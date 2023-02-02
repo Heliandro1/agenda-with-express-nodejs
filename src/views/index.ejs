@@ -1,27 +1,4 @@
 <%- include('includes/head') %>
-<body>
-    <section class="container">
-        <h1>
-            <% if(typeof titulo !== 'undefined') {%>
-                <%- titulo %>
-            <% } else{%>
-                O título não foi enviado
-            <%}%>
-        </h1>
-        <ul>
-            <% num.forEach(num => { %>
-                <%- `<li>${num}</li>` %>
-            <% }); %>
-        </ul>
-        <form action="" method="post">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <label for="">Nome</label>
-            <input type="text" name="" id="">
-            <input type="submit" value="Enviar">
-        </form>
-    </section>
-
-    <script src="assets/js/bundle.js"></script>
-</body>
-
-</html>
+<%- include('includes/nav') %>
+    <h1>Hello, world!</h1>
+<%- include('includes/footer') %>  
