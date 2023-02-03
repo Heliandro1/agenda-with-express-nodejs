@@ -17,8 +17,12 @@ class Contato{
         this.contato = null;
     }
     async register(){
+        this.valida();
         if(this.errors.length > 0) return;
         this.contato = await ContatoModel.create(this.body);
+    }
+    async getContatoById(id){
+        const user = await ContatoModel.findById(id);
     }
     valida(){
         this.cleanUp();
