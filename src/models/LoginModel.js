@@ -9,7 +9,7 @@ class Login{
     constructor(body){
         this.body = body;
         this.errors = [];
-        this.users = null;
+        this.user = null;
     }
     async register(){
         this.valida();
@@ -18,8 +18,7 @@ class Login{
             this.user = await LoginModel.create(this.body);
         } catch (err) {
             console.log(err);
-        }
-        
+        }   
     }
 
     valida(){
@@ -32,11 +31,8 @@ class Login{
     }
     cleanUp(){
         for (const key in this.body) {
-            if (Object.hasOwnProperty.call(this.body, key)) {
-                const element = this.body[key];
-                if (typeof element !== 'string') {
-                    this.body[key] = '';
-                }
+            if (typeof this.body[key] !== 'string') {
+                this.body[key] = '';
             }
         }
         this.body = {

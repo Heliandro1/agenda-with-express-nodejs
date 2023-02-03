@@ -4,7 +4,7 @@ const app = express();
 const routes = require('./routes');
 const path = require('path');
 const mongoose = require('mongoose');
-const {checkCsrf, csrfMiddleware }= require('./src/middlewares/middleware');
+const {middleWare, checkCsrf, csrfMiddleware }= require('./src/middlewares/middleware');
 const helmet = require('helmet');
 const csrf = require("csurf");
 const session = require('express-session');
@@ -23,7 +23,7 @@ const sessionOpt = session({
 });
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.CONNECTIONSTRING)
-    .then(() => app.emit('pronto'))
+    .then(() => app.emit('ready'))
     .catch(e => console.log('Erro'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -33,12 +33,13 @@ app.use(cookieParser());
 app.use(flash());
 app.use(helmet());
 app.use(csrf());
+app.use(middleWare)
 app.use(checkCsrf);
 app.use(csrfMiddleware); 
 app.use(routes);
 app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
-app.on('pronto', () =>{
+app.on('ready', () =>{
     app.listen(3001, () =>{
         console.log('Acessar http://localhost:3001');
         console.log('Server rodando na porta 3001');

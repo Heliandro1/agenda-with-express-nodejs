@@ -1,12 +1,11 @@
 exports.middleWare = (req, res, next) => {
-    res.locals.localvariable = 'Este é o value';
-    console.log();
-    console.log('Passei no seu middleware global');
-    console.log(res.locals);
+    res.locals.errors = req.flash('errors');
+    res.locals.success = req.flash('success');
     next();
 }
 exports.checkCsrf = (err, req, res, next) =>{
     if (err) {
+        console.log(err);
         return res.render('404');
     }
     next();
