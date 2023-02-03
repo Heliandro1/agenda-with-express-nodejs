@@ -8,11 +8,18 @@
 
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav ml-lg-auto  mb-lg-0">
-
           <li class="nav-item">
-            <a class="nav-link active text-white-50" aria-current="page" href="/login/index">Entrar</a>
+            <a class="nav-link active text-white-50" aria-current="page" href="/contato/index">Cadastrar Contactos</a>
           </li>
-          
+          <% if(user){ %>
+            <li class="nav-item">
+              <a class="nav-link active text-white-50" aria-current="page" href="/login/logout">Sair</a>
+            </li>
+          <% } else{ %>
+            <li class="nav-item">
+              <a class="nav-link active text-white-50" aria-current="page" href="/login/index">Entrar</a>
+            </li>
+          <% } %>
         </ul>
       </div>
     </div>
