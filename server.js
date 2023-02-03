@@ -40,8 +40,8 @@ app.use(routes);
 app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 app.on('ready', () =>{
-    app.listen(3001, () =>{
-        console.log('Acessar http://localhost:3001');
-        console.log('Server rodando na porta 3001');
+    app.listen(3000, () =>{
+        console.log('Acessar http://localhost:3000');
+        console.log('Server rodando na porta 3000');
     });
 })

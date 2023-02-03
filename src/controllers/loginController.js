@@ -10,6 +10,7 @@ exports.register = async (req, res) =>{
         if(login.errors.length > 0){
             req.flash('errors', login.errors);
             req.session.save(()=>{
+                console.log(res.redirect('back'));
                 return res.redirect('back');
             });
             return;
