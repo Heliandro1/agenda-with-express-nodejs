@@ -8,7 +8,11 @@
             <p class="text-center lead">Crie ou edite seu contato abaixo</p>
 
             <%- include('includes/messages') %>
-            <form action="/contato/register" method="post">
+            <% if(contato._id){ %>
+              <form action="/contato/edit/<%= contato._id %>" method="post">
+            <% } else { %>
+              <form action="/contato/register" method="post">
+            <% } %>
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="mb-3">
                   <label class="form-label">Nome</label>
