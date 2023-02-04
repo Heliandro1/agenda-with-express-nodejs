@@ -5,8 +5,7 @@ const ContatoSchema = new mongoose.Schema({
     sobrenome: {type: String, required: false, defalut: ''},
     telefone: {type: String, required: false, defalut: ''},
     email: {type: String, required: false, defalut: ''},
-    criadoEm: {type: String, defalut: Date.now()},
-    descricao: String
+    criadoEm: {type: Date, defalut: Date.now()},
 
 });
 const ContatoModel = mongoose.model('Contato', ContatoSchema);
@@ -21,8 +20,10 @@ class Contato{
         if(this.errors.length > 0) return;
         this.contato = await ContatoModel.create(this.body);
     }
-    async getContatoById(id){
+    static async getContatoById(id){
+        if(typeof id !== 'string') return;
         const user = await ContatoModel.findById(id);
+        return user;
     }
     valida(){
         this.cleanUp();

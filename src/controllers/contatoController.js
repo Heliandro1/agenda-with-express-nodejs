@@ -1,17 +1,19 @@
 const Contato = require('../models/ContatoModel');
 exports.index = (req, res) =>{
-    res.render('contato');
+    res.render('contato', {
+        contato: {}
+    });
 }
 exports.register = async (req, res) =>{
     try {
         const contato = new Contato(req.body);
-        contato.register();
+        await contato.register();
         if(contato.errors.length > 0){
             req.flash('errors', contato.errors);
             req.session.save(() => res.redirect('index'));
             return;
         }
-        req.flash('success', 'Contato registado com sucesso');
+        req.flash('success', 'Contato registrado com sucesso');
         req.session.save(() => res.redirect(`/contato/index/${contato.contato._id}`));
         
     } catch (error) {
@@ -21,6 +23,7 @@ exports.register = async (req, res) =>{
 }
 exports.editIndex = async (req, res) =>{
     if(!req.params.id) return res.render('404');
-
-    res.render('contato');
+    const contato = await Contato.getContatoById(req.params.id);
+    if(!contato) return res.render("404");
+    res.render('contato', { contato });
 }

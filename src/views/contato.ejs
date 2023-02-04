@@ -12,19 +12,19 @@
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="mb-3">
                   <label class="form-label">Nome</label>
-                  <input type="text" class="form-control" aria-describedby="emailHelp" name="nome">
+                  <input type="text" class="form-control" aria-describedby="emailHelp" name="nome" value="<%= contato.nome %>">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Sobrenome</label>
-                    <input type="text" class="form-control" aria-describedby="emailHelp" name="sobrenome">
+                    <input type="text" class="form-control" aria-describedby="emailHelp" name="sobrenome" value="<%= contato.sobrenome%>">
                 </div>
                   <div class="mb-3">
                     <label class="form-label">E-mail</label>
-                    <input type="email" class="form-control" aria-describedby="emailHelp" name="email">
+                    <input type="email" class="form-control" aria-describedby="emailHelp" name="email" value="<%= contato.email %>">
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Telefone</label>
-                    <input type="tel" class="form-control" aria-describedby="emailHelp" name="telefone">
+                    <input type="tel" class="form-control" aria-describedby="emailHelp" name="telefone" value="<%= contato.telefone %>">
                   </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
