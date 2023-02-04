@@ -33,8 +33,8 @@ class Contato{
     }
     static async delete(id){
         if(typeof id !== 'string') return;
-        await ContatoModel.findOneAndDelete({ _id: id });
-        return;
+        const contato = await ContatoModel.findOneAndDelete({ _id: id });
+        return contato;
     }
     static async getContatos(){
         const contatos = await ContatoModel.find()
