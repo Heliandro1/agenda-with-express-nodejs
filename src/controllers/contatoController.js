@@ -34,7 +34,7 @@ exports.edit = async (req, res) =>{
         await contato.edit(req.params.id);
         if(contato.errors.length > 0){
             req.flash('errors', contato.errors);
-            req.session.save(() => res.redirect('index'));
+            req.session.save(() => res.redirect(`/contato/index/${req.params.id}`));
             return;
         }
         req.flash('success', 'Contato editado com sucesso');
@@ -43,5 +43,4 @@ exports.edit = async (req, res) =>{
         console.log(error);
         return res.render("404");
     }
-    
 }

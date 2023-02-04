@@ -28,8 +28,13 @@ class Contato{
     }
     static async getContatoById(id){
         if(typeof id !== 'string') return;
-        const user = await ContatoModel.findById(id);
-        return user;
+        const contato = await ContatoModel.findById(id);
+        return contato;
+    }
+    static async getContatos(){
+        const contatos = await ContatoModel.find()
+        .sort({criadoEm: -1})
+        return contatos;
     }
     valida(){
         this.cleanUp();
