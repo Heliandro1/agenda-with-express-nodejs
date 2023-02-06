@@ -2,12 +2,14 @@ import validator from 'validator';
 export default class Login{
     constructor(formClass){
         this.form = document.querySelector(formClass);
+        this.error = false;
     }
     init(){
+        console.log('olá mundo');
         this.events();
     }
     events(){
-        if(!this.forms) return;
+        if(!this.form) return;
         this.form.addEventListener('submit', (e) =>{
             e.preventDefault();
             this.validate(e);
@@ -15,22 +17,23 @@ export default class Login{
     }
     validate(e){
         const el = e.target;
-        const p = document.createElement("p");
-        p.classList.add('text-danger');
-        p.style.fontSize = '0.9em';
         const emailInput = el.querySelector('input[name = "email"]');
         const passwordInput = el.querySelector('input[name = "password"]');
-        let error = false;
+        
+        if(this.error){
+            return;
+        }
         if(!validator.isEmail(emailInput.value)){
-            emailInput.insertAdjacentElement('afterend', p);
-            error = true;
+            emailInput.insertAdjacentHTML('afterend', '<p>E-mail inválido</p>');
+            
+            this.error = true;
         }
         if(passwordInput.value.length < 3 || passwordInput.value.length > 50){
-            passwordInput.insertAdjacentElement('afterend', p);
-            error = true;
+            passwordInput.insertAdjacentHTML('afterend', '<p>Password precisa ter entre 3 e 50 caracteres</p>');
+            this.error = true;
         }
 
-        if(!error){
+        if(!this.error){
             el.submit();
         }
     }
